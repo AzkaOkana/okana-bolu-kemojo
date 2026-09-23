@@ -40,7 +40,7 @@
                         LIHAT DAFTAR MENU & HARGA
                     </a>
                     <a 
-                        href="https://wa.me/6281270008899?text=Halo%20Syauqi%20Bolu%20Kemojo%2C%20saya%20ingin%20memesan%20bolu%20kemojo" 
+                        href="https://wa.me/6281270008899?text=Halo%20Okana%20Bolu%20Kemojo%2C%20saya%20ingin%20memesan%20bolu%20kemojo" 
                         target="_blank" 
                         class="w-full sm:w-auto px-7 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider rounded-md transition text-center"
                     >
@@ -74,19 +74,21 @@
                         <span class="text-brandAccent">BEST SELLER</span>
                     </div>
                     <img 
-                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" 
-                        alt="Syauqi Bolu Kemojo Pandan Wangi" 
+                        src="<?= esc($heroSetting['image_url'] ?? 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80') ?>" 
+                        alt="<?= esc($heroSetting['title'] ?? 'Bolu Kemojo Andalan') ?>" 
                         class="w-full h-72 sm:h-80 object-cover"
                     >
                     <div class="p-5 bg-slate-900 border-t border-slate-800">
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="font-black text-lg text-white uppercase">BOLU KEMOJO PANDAN WANGI</h3>
-                                <p class="text-xs text-slate-400 mt-0.5">Varian Legendaris Resep Tradisional Melayu</p>
+                                <h3 class="font-black text-lg text-white uppercase"><?= esc($heroSetting['title'] ?? 'BOLU KEMOJO PANDAN WANGI') ?></h3>
+                                <p class="text-xs text-slate-400 mt-0.5"><?= esc($heroSetting['subtitle'] ?? 'Varian Legendaris Resep Tradisional Melayu') ?></p>
                             </div>
                             <div class="text-right">
                                 <span class="text-xs text-slate-400 font-bold block uppercase">Harga</span>
-                                <span class="text-xl font-black text-brandAccent">Rp 35.000</span>
+                                <span class="text-xl font-black text-brandAccent">
+                                    Rp <?= number_format((float)($heroSetting['price'] ?? 35000), 0, ',', '.') ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -231,7 +233,7 @@
 
 
 <!-- =========================================================================
-     TENTANG SYAUQI BOLU KEMOJO (EDITORIAL RESTAURANT SECTION)
+     TENTANG OKANA BOLU KEMOJO (EDITORIAL RESTAURANT SECTION)
      ========================================================================= -->
 <section id="tentang-section" class="py-16 bg-white border-t-2 border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -243,13 +245,13 @@
                         WARISAN KULINER TRADISIONAL
                     </span>
                     <h3 class="text-3xl sm:text-4xl font-black text-slate-900 uppercase tracking-tight">
-                        Mengapa Harus Syauqi Bolu Kemojo?
+                        Mengapa Harus Okana Bolu Kemojo?
                     </h3>
                     <p class="text-sm text-slate-700 leading-relaxed font-medium">
                         Bolu Kemojo adalah kue tradisional khas Melayu yang dicetak dalam loyang berbentuk kelopak bunga kamboja (kemojo). Kue ini merupakan sajian kehormatan pada upacara adat, pesta pernikahan, dan kenduri besar di Kepulauan Riau.
                     </p>
                     <p class="text-sm text-slate-700 leading-relaxed font-medium">
-                        Di <strong>Syauqi Bolu Kemojo</strong>, kami mempertahankan metode pemanggangan tradisional warisan leluhur. Kami tidak menggunakan pewarna buatan maupun pemanis kimia. Seluruh warna hijau dan keharuman bolu berasal dari sari daun pandan suji murni, dipadu dengan santan perasan pertama yang gurih legit.
+                        Di <strong>Okana Bolu Kemojo</strong>, kami mempertahankan metode pemanggangan tradisional warisan leluhur. Kami tidak menggunakan pewarna buatan maupun pemanis kimia. Seluruh warna hijau dan keharuman bolu berasal dari sari daun pandan suji murni, dipadu dengan santan perasan pertama yang gurih legit.
                     </p>
                 </div>
 

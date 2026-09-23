@@ -22,4 +22,6 @@ $routes->group('admin/menu', ['filter' => 'admin'], static function ($routes) {
     $routes->post('update/(:num)', 'MenuController::update/$1');
     $routes->get('delete/(:num)', 'MenuController::delete/$1');
     $routes->post('delete/(:num)', 'MenuController::delete/$1');
+    $routes->post('update-hero', 'MenuController::updateHero');
+    $routes->get('set-hero/(:num)', 'MenuController::setAsHero/$1');
 });

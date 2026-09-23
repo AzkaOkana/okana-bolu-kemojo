@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'Syauqi Bolu Kemojo - Khas Kepulauan Riau') ?></title>
+    <title><?= esc($title ?? 'Okana Bolu Kemojo - Khas Kepulauan Riau') ?></title>
     
     <!-- Meta SEO -->
-    <meta name="description" content="Syauqi Bolu Kemojo - Kuliner khas Kepulauan Riau. Nikmati aneka varian bolu kemojo lembut, harum pandan asli, dipanggang segar setiap hari.">
+    <meta name="description" content="Okana Bolu Kemojo - Kuliner khas Kepulauan Riau. Nikmati aneka varian bolu kemojo lembut, harum pandan asli, dipanggang segar setiap hari.">
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +79,7 @@
                     </div>
                     <div>
                         <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-950 uppercase block leading-none">
-                            SYAUQI <span class="text-brandPrimary">BOLU KEMOJO</span>
+                            OKANA <span class="text-brandPrimary">BOLU KEMOJO</span>
                         </span>
                         <span class="text-[11px] font-bold text-slate-500 tracking-wider uppercase block mt-1">
                             Khas Kepulauan Riau
@@ -196,7 +196,7 @@
                             S
                         </div>
                         <div>
-                            <span class="font-black text-lg text-white tracking-tight uppercase block leading-none">SYAUQI BOLU KEMOJO</span>
+                            <span class="font-black text-lg text-white tracking-tight uppercase block leading-none">OKANA BOLU KEMOJO</span>
                             <span class="text-xs font-bold text-brandAccent block mt-0.5">Khas Kepulauan Riau</span>
                         </div>
                     </div>
@@ -246,7 +246,7 @@
                         Menerima pesanan untuk oleh-oleh wisata, rapat dinas, hajatan perkawinan, dan pengiriman harian se-Kepri & luar kota.
                     </p>
                     <a 
-                        href="https://wa.me/6281270008899?text=Halo%20Syauqi%20Bolu%20Kemojo%2C%20saya%20mau%20pesan" 
+                        href="https://wa.me/6281270008899?text=Halo%20Okana%20Bolu%20Kemojo%2C%20saya%20mau%20pesan" 
                         target="_blank" 
                         class="inline-flex items-center justify-center gap-2 w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs uppercase tracking-wider rounded transition"
                     >
@@ -263,7 +263,7 @@
 
             <!-- Bottom Copyright -->
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <p>&copy; <?= date('Y') ?> <strong>SYAUQI BOLU KEMOJO</strong> • Khas Kepulauan Riau. Hak Cipta Dilindungi.</p>
+                <p>&copy; <?= date('Y') ?> <strong>OKANA BOLU KEMOJO</strong> • Khas Kepulauan Riau. Hak Cipta Dilindungi.</p>
                 <p class="text-slate-400 font-semibold">Cita Rasa Otentik Melayu Pilihan Keluarga Indonesia</p>
             </div>
         </div>

@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\MenuModel;
+use App\Models\SettingModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class MenuController extends BaseController
 {
     protected $menuModel;
+    protected $settingModel;
 
     public function __construct()
     {
         $this->menuModel = new MenuModel();
+        $this->settingModel = new SettingModel();
     }
 
     /**
@@ -44,7 +47,7 @@ class MenuController extends BaseController
         }
 
         $data = [
-            'title'        => $menu['name'] . ' - Syauqi Bolu Kemojo Khas Kepulauan Riau',
+            'title'        => $menu['name'] . ' - Okana Bolu Kemojo Khas Kepulauan Riau',
             'menu'         => $menu,
             'relatedMenus' => $relatedMenus,
         ];
@@ -61,11 +64,13 @@ class MenuController extends BaseController
     {
         $menus = $this->menuModel->orderBy('created_at', 'DESC')->findAll();
         $categories = $this->menuModel->getCategories();
+        $heroSetting = $this->settingModel->getHeroSetting();
 
         $data = [
-            'title'      => 'Kelola Menu - Admin Panel Syauqi Bolu Kemojo',
-            'menus'      => $menus,
-            'categories' => $categories,
+            'title'       => 'Kelola Menu - Admin Panel Okana Bolu Kemojo',
+            'menus'       => $menus,
+            'categories'  => $categories,
+            'heroSetting' => $heroSetting,
         ];
 
         return view('admin/index', $data);
@@ -268,5 +273,53 @@ class MenuController extends BaseController
         $this->menuModel->delete($id);
 
         return redirect()->to(base_url('admin/menu'))->with('success', "Menu '{$menu['name']}' berhasil dihapus.");
+    }
+
+    /**
+     * Memperbarui foto & informasi Menu Utama (Hero Banner)
+     */
+    public function updateHero()
+    {
+        $imageUrl = trim($this->request->getPost('image_url') ?? '');
+        $title    = trim($this->request->getPost('title') ?? '');
+        $subtitle = trim($this->request->getPost('subtitle') ?? '');
+        $price    = trim($this->request->getPost('price') ?? '');
+
+        if (empty($imageUrl)) {
+            $imageUrl = 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80';
+        }
+
+        $this->settingModel->saveHeroSetting([
+            'image_url' => $imageUrl,
+            'title'     => !empty($title) ? strtoupper($title) : 'BOLU KEMOJO PANDAN WANGI',
+            'subtitle'  => !empty($subtitle) ? $subtitle : 'Varian Legendaris Resep Tradisional Melayu',
+            'price'     => !empty($price) ? $price : '35000',
+        ]);
+
+        return redirect()->to(base_url('admin/menu'))->with('success', 'Foto & data Menu Utama (Hero Banner) berhasil diperbarui!');
+    }
+
+    /**
+     * 1-Klik menyetel menu tertentu sebagai Menu Utama (Hero Banner)
+     *
+     * @param int $id
+     */
+    public function setAsHero(int $id)
+    {
+        $menu = $this->menuModel->find($id);
+
+        if (! $menu) {
+            return redirect()->to(base_url('admin/menu'))->with('error', 'Menu tidak ditemukan.');
+        }
+
+        $this->settingModel->saveHeroSetting([
+            'image_url' => $menu['image_url'] ?: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80',
+            'title'     => strtoupper($menu['name']),
+            'subtitle'  => 'Varian Unggulan Kategori ' . $menu['category'],
+            'price'     => (string)$menu['price'],
+            'menu_id'   => $menu['id'],
+        ]);
+
+        return redirect()->to(base_url('admin/menu'))->with('success', "Varian '{$menu['name']}' berhasil ditetapkan sebagai Menu Utama di banner depan!");
     }
 }

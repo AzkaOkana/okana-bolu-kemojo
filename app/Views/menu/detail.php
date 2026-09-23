@@ -99,7 +99,7 @@
                 <!-- Action Buttons (Commercial Ordering) -->
                 <div class="space-y-3 pt-4 border-t border-slate-200">
                     <?php 
-                        $waText = urlencode("Halo Syauqi Bolu Kemojo, saya ingin memesan: " . $menu['name'] . " (Rp " . number_format($menu['price'], 0, ',', '.') . "). Mohon info ketersediaan stok.");
+                        $waText = urlencode("Halo Okana Bolu Kemojo, saya ingin memesan: " . $menu['name'] . " (Rp " . number_format($menu['price'], 0, ',', '.') . "). Mohon info ketersediaan stok.");
                         $waUrl = "https://wa.me/6281270008899?text=" . $waText;
                     ?>
                     

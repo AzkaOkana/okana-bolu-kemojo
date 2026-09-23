@@ -14,7 +14,7 @@
                 MASUK KE AKUN ANDA
             </h2>
             <p class="text-xs text-slate-600 font-medium">
-                Kelola menu atau nikmati kemudahan belanja di <strong>Syauqi Bolu Kemojo</strong>.
+                Kelola menu atau nikmati kemudahan belanja di <strong>Okana Bolu Kemojo</strong>.
             </p>
         </div>
 
