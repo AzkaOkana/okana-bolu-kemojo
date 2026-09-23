@@ -22,7 +22,7 @@ class Home extends BaseController
         $categories = $this->menuModel->getCategories();
 
         $data = [
-            'title'            => 'Okana Bolu Kemojo - Cita Rasa Khas Kepulauan Riau',
+            'title'            => 'Syauqi Bolu Kemojo - Cita Rasa Khas Kepulauan Riau',
             'menus'            => $menus,
             'categories'       => $categories,
             'selectedCategory' => $selectedCategory,

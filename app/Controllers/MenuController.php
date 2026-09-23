@@ -44,7 +44,7 @@ class MenuController extends BaseController
         }
 
         $data = [
-            'title'        => $menu['name'] . ' - Okana Bolu Kemojo Khas Kepulauan Riau',
+            'title'        => $menu['name'] . ' - Syauqi Bolu Kemojo Khas Kepulauan Riau',
             'menu'         => $menu,
             'relatedMenus' => $relatedMenus,
         ];
@@ -63,7 +63,7 @@ class MenuController extends BaseController
         $categories = $this->menuModel->getCategories();
 
         $data = [
-            'title'      => 'Kelola Menu - Admin Panel Okana Bolu Kemojo',
+            'title'      => 'Kelola Menu - Admin Panel Syauqi Bolu Kemojo',
             'menus'      => $menus,
             'categories' => $categories,
         ];

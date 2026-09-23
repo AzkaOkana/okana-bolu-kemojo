@@ -2,45 +2,40 @@
 
 <?= $this->section('content') ?>
 
-<div class="py-10 sm:py-14 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="py-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Top Breadcrumb -->
-    <div class="mb-8">
-        <div class="flex items-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
-            <a href="<?= base_url('/') ?>" class="hover:text-brandPrimary">Beranda</a>
-            <span>/</span>
-            <a href="<?= base_url('admin/menu') ?>" class="hover:text-brandPrimary">Admin Kelola Menu</a>
-            <span>/</span>
-            <span class="text-brandPrimary"><?= !empty($menu) ? 'Edit Menu' : 'Tambah Menu Baru' ?></span>
-        </div>
-        <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+        <a href="<?= base_url('/') ?>" class="hover:text-brandPrimary">BERANDA</a> / 
+        <a href="<?= base_url('admin/menu') ?>" class="hover:text-brandPrimary">KELOLA MENU</a> / 
+        <span class="text-slate-900"><?= !empty($menu) ? 'EDIT MENU' : 'TAMBAH BARU' ?></span>
+    </div>
+
+    <div class="pb-6 border-b-2 border-slate-300 mb-8">
+        <h1 class="text-2xl sm:text-3xl font-black text-slate-900 uppercase tracking-tight">
             <?= esc($title) ?>
         </h1>
-        <p class="text-slate-500 text-sm mt-0.5">
-            Lengkapi formulir di bawah ini dengan informasi akurat. Seluruh input diverifikasi secara ketat.
+        <p class="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
+            Lengkapi data formulir di bawah ini dengan lengkap dan teliti untuk katalog etalase online.
         </p>
     </div>
 
     <!-- =========================================================================
-         FITUR 2 (ADMIN): BLOK ALERT ERROR VALIDASI FORM CI4
+         FITUR 2: BLOK NOTIFIKASI ERROR VALIDASI KETAT CI4
          ========================================================================= -->
     <?php if (!empty($errors)): ?>
-        <div class="mb-8 p-5 rounded-2xl bg-rose-50 border-2 border-rose-300 shadow-sm animate-fade-in" role="alert">
-            <div class="flex items-start gap-3.5">
-                <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
+        <div class="mb-8 p-5 bg-rose-50 border-2 border-rose-500 rounded-md" role="alert">
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-rose-600 text-white rounded flex items-center justify-center font-black text-xs shrink-0 mt-0.5">
+                    !
                 </div>
                 <div class="flex-1">
-                    <h3 class="text-sm font-bold text-rose-900 tracking-tight">
-                        Mohon Perbaiki <?= count($errors) ?> Kesalahan Input Form Berikut:
+                    <h3 class="text-xs sm:text-sm font-black uppercase text-rose-900 tracking-wide">
+                        PERIKSA KEMBALI INPUT FORM (<?= count($errors) ?> KESALAHAN):
                     </h3>
-                    <ul class="mt-2 text-xs sm:text-sm text-rose-700 list-disc list-inside space-y-1">
+                    <ul class="mt-2 text-xs text-rose-800 list-disc list-inside space-y-1 font-semibold">
                         <?php foreach ($errors as $field => $errorMsg): ?>
-                            <li>
-                                <span class="font-bold capitalize"><?= esc($field) ?>:</span> <?= esc($errorMsg) ?>
-                            </li>
+                            <li><strong class="uppercase"><?= esc($field) ?>:</strong> <?= esc($errorMsg) ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -48,15 +43,15 @@
         </div>
     <?php endif; ?>
 
-    <!-- Main Form Container -->
-    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6 sm:p-10">
+    <!-- Form Container -->
+    <div class="bg-white border-2 border-slate-300 rounded-lg p-6 sm:p-8 shadow-xs">
         <form action="<?= $action ?>" method="post" class="space-y-6">
             <?= csrf_field() ?>
 
             <!-- Field 1: Nama Menu -->
             <div>
-                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                    Nama Varian Bolu Kemojo <span class="text-rose-500">*</span>
+                <label for="name" class="block text-xs font-black uppercase tracking-wider text-slate-800 mb-1.5">
+                    NAMA VARIAN MENU <span class="text-rose-600">*</span>
                 </label>
                 <input 
                     type="text" 
@@ -64,18 +59,13 @@
                     name="name" 
                     value="<?= old('name', $menu['name'] ?? '') ?>" 
                     placeholder="Contoh: Bolu Kemojo Pandan Wangi Asli"
-                    class="w-full px-4 py-3 rounded-xl border <?= isset($errors['name']) ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20' : 'border-slate-300 focus:border-brandPrimary focus:ring-4 focus:ring-brandPrimary/10' ?> text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                    class="w-full px-4 py-2.5 bg-slate-50 border-2 <?= isset($errors['name']) ? 'border-rose-500 bg-rose-50/30' : 'border-slate-300 focus:border-brandPrimary focus:bg-white' ?> text-sm text-slate-900 font-semibold rounded outline-none transition"
                     required
                 >
                 <?php if (isset($errors['name'])): ?>
-                    <p class="mt-1.5 text-xs text-rose-600 font-semibold flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                        <?= esc($errors['name']) ?>
-                    </p>
+                    <p class="mt-1 text-xs text-rose-600 font-bold"><?= esc($errors['name']) ?></p>
                 <?php else: ?>
-                    <p class="mt-1.5 text-[11px] text-slate-400">Minimal 3 karakter. Berikan nama yang menarik dan mencerminkan keaslian rasa.</p>
+                    <p class="mt-1 text-[11px] text-slate-500">Minimal 3 karakter. Gunakan nama yang menarik dan jelas bagi pembeli.</p>
                 <?php endif; ?>
             </div>
 
@@ -84,48 +74,39 @@
                 
                 <!-- Field 2: Kategori -->
                 <div>
-                    <label for="category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                        Kategori Varian <span class="text-rose-500">*</span>
+                    <label for="category" class="block text-xs font-black uppercase tracking-wider text-slate-800 mb-1.5">
+                        KATEGORI MENU <span class="text-rose-600">*</span>
                     </label>
                     <?php 
                         $currentCat = old('category', $menu['category'] ?? '');
+                        $presetCategories = ['Pandan', 'Keju', 'Cokelat', 'Durian', 'Original', 'Modern', 'Paket'];
+                        $allCats = array_unique(array_merge($presetCategories, $categories));
                     ?>
                     <select 
                         id="category" 
                         name="category" 
-                        class="w-full px-4 py-3 rounded-xl border <?= isset($errors['category']) ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20' : 'border-slate-300 focus:border-brandPrimary focus:ring-4 focus:ring-brandPrimary/10' ?> text-sm text-slate-800 bg-white transition-all outline-none"
+                        class="w-full px-4 py-2.5 bg-slate-50 border-2 <?= isset($errors['category']) ? 'border-rose-500 bg-rose-50/30' : 'border-slate-300 focus:border-brandPrimary focus:bg-white' ?> text-sm text-slate-900 font-semibold rounded outline-none transition"
                         required
                     >
-                        <option value="">-- Pilih Kategori Menu --</option>
-                        <?php 
-                            $presetCategories = ['Pandan', 'Keju', 'Cokelat', 'Durian', 'Original', 'Modern', 'Paket'];
-                            $allCats = array_unique(array_merge($presetCategories, $categories));
-                        ?>
-                        <?php foreach ($allCats as $catOption): ?>
-                            <option value="<?= esc($catOption) ?>" <?= (strcasecmp($currentCat, $catOption) === 0) ? 'selected' : '' ?>>
-                                <?= esc($catOption) ?>
+                        <option value="">-- PILIH KATEGORI --</option>
+                        <?php foreach ($allCats as $cat): ?>
+                            <option value="<?= esc($cat) ?>" <?= (strcasecmp($currentCat, $cat) === 0) ? 'selected' : '' ?>>
+                                <?= esc(strtoupper($cat)) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                     <?php if (isset($errors['category'])): ?>
-                        <p class="mt-1.5 text-xs text-rose-600 font-semibold flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                            </svg>
-                            <?= esc($errors['category']) ?>
-                        </p>
-                    <?php else: ?>
-                        <p class="mt-1.5 text-[11px] text-slate-400">Pilih salah satu kategori menu untuk memudahkan filter pelanggan.</p>
+                        <p class="mt-1 text-xs text-rose-600 font-bold"><?= esc($errors['category']) ?></p>
                     <?php endif; ?>
                 </div>
 
-                <!-- Field 3: Harga (Price) -->
+                <!-- Field 3: Harga -->
                 <div>
-                    <label for="price" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                        Harga Jual (IDR) <span class="text-rose-500">*</span>
+                    <label for="price" class="block text-xs font-black uppercase tracking-wider text-slate-800 mb-1.5">
+                        HARGA JUAL (IDR) <span class="text-rose-600">*</span>
                     </label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 font-bold text-slate-400 text-sm pointer-events-none">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 font-black text-slate-500 text-xs pointer-events-none">
                             Rp
                         </span>
                         <input 
@@ -135,19 +116,14 @@
                             name="price" 
                             value="<?= old('price', isset($menu['price']) ? (int)$menu['price'] : '') ?>" 
                             placeholder="35000"
-                            class="w-full pl-12 pr-4 py-3 rounded-xl border <?= isset($errors['price']) ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20' : 'border-slate-300 focus:border-brandPrimary focus:ring-4 focus:ring-brandPrimary/10' ?> text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border-2 <?= isset($errors['price']) ? 'border-rose-500 bg-rose-50/30' : 'border-slate-300 focus:border-brandPrimary focus:bg-white' ?> text-sm text-slate-900 font-bold rounded outline-none transition"
                             required
                         >
                     </div>
                     <?php if (isset($errors['price'])): ?>
-                        <p class="mt-1.5 text-xs text-rose-600 font-semibold flex items-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                            </svg>
-                            <?= esc($errors['price']) ?>
-                        </p>
+                        <p class="mt-1 text-xs text-rose-600 font-bold"><?= esc($errors['price']) ?></p>
                     <?php else: ?>
-                        <p class="mt-1.5 text-[11px] text-slate-400">Harus berupa angka lebih besar dari 0.</p>
+                        <p class="mt-1 text-[11px] text-slate-500">Angka nominal lebih besar dari 0.</p>
                     <?php endif; ?>
                 </div>
 
@@ -155,8 +131,8 @@
 
             <!-- Field 4: Image URL (Dummy Unsplash) -->
             <div>
-                <label for="image_url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                    URL Gambar Produk (Unsplash / Tautan Gambar)
+                <label for="image_url" class="block text-xs font-black uppercase tracking-wider text-slate-800 mb-1.5">
+                    URL FOTO MENU (UNSPLASH / TAUTAN LANGSUNG)
                 </label>
                 <input 
                     type="url" 
@@ -164,78 +140,61 @@
                     name="image_url" 
                     value="<?= old('image_url', $menu['image_url'] ?? '') ?>" 
                     placeholder="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
-                    class="w-full px-4 py-3 rounded-xl border <?= isset($errors['image_url']) ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20' : 'border-slate-300 focus:border-brandPrimary focus:ring-4 focus:ring-brandPrimary/10' ?> text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                    class="w-full px-4 py-2.5 bg-slate-50 border-2 <?= isset($errors['image_url']) ? 'border-rose-500 bg-rose-50/30' : 'border-slate-300 focus:border-brandPrimary focus:bg-white' ?> text-sm text-slate-900 rounded outline-none transition"
                 >
                 <?php if (isset($errors['image_url'])): ?>
-                    <p class="mt-1.5 text-xs text-rose-600 font-semibold flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                        <?= esc($errors['image_url']) ?>
-                    </p>
-                <?php else: ?>
-                    <p class="mt-1.5 text-[11px] text-slate-400">Opsional. Jika dikosongkan, sistem otomatis menggunakan foto kue standar berkualitas tinggi.</p>
+                    <p class="mt-1 text-xs text-rose-600 font-bold"><?= esc($errors['image_url']) ?></p>
                 <?php endif; ?>
 
-                <!-- Image Live Preview Box -->
-                <div class="mt-3 flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <div class="w-14 h-14 rounded-lg overflow-hidden bg-slate-200 shrink-0 border border-slate-300 flex items-center justify-center">
-                        <img 
-                            id="preview-img" 
-                            src="<?= esc(old('image_url', $menu['image_url'] ?? 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=200&q=80')) ?>" 
-                            alt="Pratinjau Foto" 
-                            class="w-full h-full object-cover"
-                            onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=200&q=80'"
-                        >
-                    </div>
-                    <div class="text-xs text-slate-500">
-                        <span class="font-bold text-slate-700 block">Pratinjau Foto Menu</span>
-                        <span>Foto akan diperbarui otomatis saat URL gambar diganti.</span>
+                <!-- Live Preview Bar -->
+                <div class="mt-3 p-3 bg-slate-100 border border-slate-300 rounded flex items-center gap-3">
+                    <img 
+                        id="preview-img" 
+                        src="<?= esc(old('image_url', $menu['image_url'] ?? 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=200&q=80')) ?>" 
+                        alt="Preview" 
+                        class="w-14 h-12 object-cover rounded border border-slate-300 shrink-0"
+                        onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=200&q=80'"
+                    >
+                    <div class="text-xs text-slate-600">
+                        <strong class="text-slate-800 block">Pratinjau Foto Menu</strong>
+                        <span>Foto akan otomatis berganti saat URL gambar diubah.</span>
                     </div>
                 </div>
             </div>
 
             <!-- Field 5: Deskripsi Menu -->
             <div>
-                <label for="description" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                    Deskripsi Lengkap Kelezatan <span class="text-rose-500">*</span>
+                <label for="description" class="block text-xs font-black uppercase tracking-wider text-slate-800 mb-1.5">
+                    DESKRIPSI LENGKAP CITA RASA <span class="text-rose-600">*</span>
                 </label>
                 <textarea 
                     id="description" 
                     name="description" 
                     rows="4" 
-                    placeholder="Jelaskan aroma pandan, rasa gurih santan, kelembutan tekstur, dan keunikan khas Kepulauan Riau dari varian ini..."
-                    class="w-full px-4 py-3 rounded-xl border <?= isset($errors['description']) ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20' : 'border-slate-300 focus:border-brandPrimary focus:ring-4 focus:ring-brandPrimary/10' ?> text-sm text-slate-800 placeholder-slate-400 transition-all outline-none leading-relaxed"
+                    placeholder="Tuliskan komposisi rasa, wangi pandan, kelembutan tekstur, dan ciri khas rasa Melayu Kepri..."
+                    class="w-full px-4 py-2.5 bg-slate-50 border-2 <?= isset($errors['description']) ? 'border-rose-500 bg-rose-50/30' : 'border-slate-300 focus:border-brandPrimary focus:bg-white' ?> text-sm text-slate-900 rounded outline-none transition leading-relaxed"
                     required
                 ><?= old('description', $menu['description'] ?? '') ?></textarea>
                 <?php if (isset($errors['description'])): ?>
-                    <p class="mt-1.5 text-xs text-rose-600 font-semibold flex items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                        <?= esc($errors['description']) ?>
-                    </p>
+                    <p class="mt-1 text-xs text-rose-600 font-bold"><?= esc($errors['description']) ?></p>
                 <?php else: ?>
-                    <p class="mt-1.5 text-[11px] text-slate-400">Minimal 10 karakter. Deskripsi detail membantu pembeli mengenal ciri khas rasa.</p>
+                    <p class="mt-1 text-[11px] text-slate-500">Minimal 10 karakter untuk menjelaskan kelezatan kue secara informatif.</p>
                 <?php endif; ?>
             </div>
 
-            <!-- Form Action Buttons -->
-            <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-end gap-3">
+            <!-- Submit Action Buttons -->
+            <div class="pt-4 border-t-2 border-slate-200 flex items-center justify-end gap-3">
                 <a 
                     href="<?= base_url('admin/menu') ?>" 
-                    class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-sm text-center transition-all"
+                    class="px-6 py-3 border-2 border-slate-300 hover:bg-slate-100 text-slate-800 font-bold text-xs uppercase tracking-wider rounded transition"
                 >
-                    Batal
+                    BATAL
                 </a>
                 <button 
                     type="submit" 
-                    class="w-full sm:w-auto px-7 py-3 rounded-xl bg-brandPrimary hover:bg-brandPrimaryHover text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 inline-flex items-center justify-center gap-2"
+                    class="px-7 py-3 bg-brandPrimary hover:bg-brandPrimaryDark text-white font-black text-xs uppercase tracking-wider rounded shadow transition"
                 >
-                    <svg class="w-4 h-4 text-brandAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span><?= !empty($menu) ? 'Perbarui Data Menu' : 'Simpan Varian Menu' ?></span>
+                    <?= !empty($menu) ? 'SIMPAN PERUBAHAN MENU' : 'SIMPAN VARIAN MENU' ?>
                 </button>
             </div>
 
@@ -244,11 +203,9 @@
 
 </div>
 
-<!-- Realtime Image Preview Script -->
 <script>
     const imgInput = document.getElementById('image_url');
     const previewImg = document.getElementById('preview-img');
-
     if (imgInput && previewImg) {
         imgInput.addEventListener('input', function() {
             const val = this.value.trim();
